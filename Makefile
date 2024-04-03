@@ -3,5 +3,11 @@ VERSION=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HE
 format:
 	gofmt -s -w ./
 
+lint:
+	golint
+
+test:
+	go test -v
+
 build:
 	CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${shell dpkg --print-architecture} go build -v -o kbot -ldflags "-X="github.com/MikityukVarvara/kbot-main/cmd.appVersion=${VERSION}
