@@ -25,4 +25,4 @@ push:
 	docker push $(REGISTERY)/$(APP):$(VERSION)-$(TARGETARCH)
 
 clean:
-	docker rmi $(VERSION)-$(TARGETARCH)
+	docker rmi v1.0.5-2b48f53-
