@@ -3,7 +3,6 @@ FROM golang:1.22.1 as builder
 WORKDIR /go/src/app
 
 COPY . .
-RUN go get
 RUN make build 
 
 FROM scratch
