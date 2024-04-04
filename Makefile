@@ -25,4 +25,4 @@ push:
 	docker push $(REGISTERY)/$(APP):$(VERSION)-$(TARGETARCH)
 
 clean:
-	docker rmi v1.0.5-8364aaa-
+	sudo docker rmi 0f59544e99fe
