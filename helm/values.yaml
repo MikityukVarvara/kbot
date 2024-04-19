@@ -4,8 +4,10 @@
 
 replicaCount: 1
 image:
-  repository: mikityuk
+  registry: "ghcr.io"
+  repository: "mikityuk/kbot"
   tag: "1.0.6-78fe64c"
+  os: linux
   arch: amd64
 secret:
   name: "kbot"
