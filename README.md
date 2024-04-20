@@ -14,4 +14,3 @@ t.me/mikityukv_bot
 -/start hello
 ( u received answer like: Hello I'm kbot num. of version )
 
-SHOULD WORK
