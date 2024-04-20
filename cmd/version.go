@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var appVersion = "v1.0.6"
+var appVersion = "v1.0.5"
 
 // versionCmd represents the version command
 var versionCmd = &cobra.Command{
@@ -28,6 +28,7 @@ to quickly create a Cobra application.`,
 
 func init() {
 	rootCmd.AddCommand(versionCmd)
+
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
