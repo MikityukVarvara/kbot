@@ -6,10 +6,10 @@ replicaCount: 1
 image:
   registry: "ghcr.io"
   repository: "mikityukvarvara/kbot"
-  tag: "v1.0.6-d538bd8"
+  tag: "1.0.6-4735423"
   os: linux
   arch: amd64
 secret:
   name: "kbot"
-  tokenKey: "token"
-  tokenName: "TELE_TOKEN"
+  env: "TELE_TOKEN"
+  key: "token"
