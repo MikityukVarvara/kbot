@@ -4,7 +4,10 @@ on:
   push:
     branches:
       - develop
-
+      
+env:
+  TARGETARCH: amd64
+  
 jobs:
   ci:
     name: CI
