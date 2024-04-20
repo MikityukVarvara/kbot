@@ -23,7 +23,7 @@ image:
 	docker build . -t $(REGISTERY)/$(APP):$(VERSION)-$(TARGETARCH)
 
 push:
-	docker push $(REGISTERY)/$(APP):v$(VERSION)-$(TARGETARCH)
+	docker push $(REGISTERY)/$(APP):$(VERSION)-$(TARGETARCH)
 
 clean:
 	docker rmi $(REGISTERY)/$(APP):$(VERSION)-$(TARGETARCH)
