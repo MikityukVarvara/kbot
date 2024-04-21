@@ -24,7 +24,7 @@ image: format get build
 	docker build . -t ${REGISTRY}${APP}:${VERSION}-${TARGETOS}-${TARGETARCH}
 
 push:
-	docker push $(REGISTERY)/$(APP):$(VERSION)-$(TARGETARCH)
+	docker push ${REGISTRY}${APP}:${VERSION}-${TARGETOS}-${TARGETARCH}
 
 clean:
 	docker rmi $(REGISTERY)/$(APP):$(VERSION)-$(TARGETARCH)
