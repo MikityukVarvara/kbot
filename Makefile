@@ -16,8 +16,8 @@ test:
 get:
 	go get 
 
-build:
-	CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${shell dpkg --print-architecture} go build -v -o kbot -ldflags "-X="github.com/MikityukVarvara/kbot/cmd.appVersion=${VERSION}
+build: format get
+	CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -v -o ${APP} -ldflags "-X="github.com/MikityukVarvara/kbot/cmd.appVersion=${VERSION}
 
 image:
 	docker build . -t $(REGISTERY)/$(APP):$(VERSION)-$(TARGETARCH)
