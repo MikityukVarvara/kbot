@@ -18,13 +18,13 @@ test:
 get:
 	go get 
 
-build:
-	CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${shell dpkg --print-architecture} go build -v -o kbot -ldflags "-X="github.com/MikityukVarvara/kbot-main/cmd.appVersion=${VERSION}
-
-image:
-	#docker build . -t $(REGISTERY)/$(APP):$(VERSION)-$(TARGETARCH)
-	docker build . -t ${REGISTRY}${APP}:${VERSION}-${TARGETOS}-${TARGETARCH}
+image: format get build
+	docker buildx build --platform ${TARGETOS}/${TARGETARCH} . -t ${REGISTRY}${APP}:${VERSION}-${TARGETOS}-${TARGETARCH}
 
 push:
-	docker push ${REGISTRY}${APP}:${VERSION}-${TARGETOS}-${TARGETARCH
+	docker push ${REGISTRY}${APP}:${VERSION}-${TARGETOS}-${TARGETARCH}
+	
+clean: 
+	rm -rf ${APP}
+	docker rmi ${REGISTRY}${APP}:${VERSION}-${TARGETOS}-${TARGETARCH}
 
