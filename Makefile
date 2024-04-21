@@ -2,6 +2,7 @@ APP=$(shell basename $(shell git remote get-url origin))
 REGISTERY=mikityuk
 VERSION=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HEAD)
 TARGETARCH=amd64
+TARGETOS=linux
 
 
 format:
@@ -19,8 +20,8 @@ get:
 build: format get
 	CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -v -o ${APP} -ldflags "-X="github.com/MikityukVarvara/kbot/cmd.appVersion=${VERSION}
 
-image:
-	docker build . -t $(REGISTERY)/$(APP):$(VERSION)-$(TARGETARCH)
+image: format get build
+	docker buildx build --platform ${TARGETOS}/${TARGETARCH} . -t ${REGISTRY}${APP}:${VERSION}-${TARGETOS}-${TARGETARCH}
 
 push:
 	docker push $(REGISTERY)/$(APP):$(VERSION)-$(TARGETARCH)
