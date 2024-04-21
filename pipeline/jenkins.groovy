@@ -14,35 +14,35 @@ pipeline {
     }
 
     stages {
-        stage("YOUR SETTINGS") {
+        stage('YOUR SETTINGS') {
             steps {
                 echo "Build for platform ${params.OS}"
                 echo "Build for arch: ${params.ARCH}"
             }
         }
 
-        stage("clone") {
+        stage('clone') {
             steps {
                 echo "CLONE REPOSITORY"
                 git branch: "${BRANCH}", url: "${REPO}"
             }
         }
 
-        stage("test") {
+        stage('test') {
             steps {
                 echo "TEST EXECUTION STARTED"
                 sh "make test"
             }
         }
 
-        stage("image") {
+        stage('image') {
             steps {
                 echo "BUILD EXECUTION STARTED"
                 sh "make image"
             }
         }
 
-        stage("push") {
+        stage('push') {
             steps {
                 script {
                     docker.withRegistry('', 'dockerhub') {
