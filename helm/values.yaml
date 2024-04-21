@@ -6,9 +6,9 @@ replicaCount: 1
 image:
   registry: "ghcr.io"
   repository: mikityuk
-  tag: "v1.0.5-19b42f3"
+  tag: "v1.0.5-a2bff3d"
   os: linux
-  arch: amd64
+  arch: ""
 secret:
   name: "kbot"
   tokenKey: "token"
