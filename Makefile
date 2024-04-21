@@ -18,8 +18,8 @@ test:
 get:
 	go get 
 
-image: format get build
-	docker buildx build --platform ${TARGETOS}/${TARGETARCH} . -t ${REGISTRY}${APP}:${VERSION}-${TARGETOS}-${TARGETARCH}
+image: 
+	docker build --platform ${TARGETOS}/${TARGETARCH} . -t ${REGISTRY}${APP}:${VERSION}-${TARGETOS}-${TARGETARCH}
 
 push:
 	docker push ${REGISTRY}${APP}:${VERSION}-${TARGETOS}-${TARGETARCH}
