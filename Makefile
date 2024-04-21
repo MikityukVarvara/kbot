@@ -23,8 +23,8 @@ build:
 
 image:
 	#docker build . -t $(REGISTERY)/$(APP):$(VERSION)-$(TARGETARCH)
-	docker build . -t ${REGISTRY}/${APP}:${VERSION}-${TARGETOS}-${TARGETARCH}
+	docker build . -t ${REGISTRY}${APP}:${VERSION}-${TARGETOS}-${TARGETARCH}
 
 push:
-	docker push ${REGISTRY}/${APP}:${VERSION}-${TARGETOS}-${TARGETARCH
+	docker push ${REGISTRY}${APP}:${VERSION}-${TARGETOS}-${TARGETARCH
 
