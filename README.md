@@ -13,4 +13,3 @@ t.me/mikityukv_bot
 **Command for bot:**
 -/start hello
 ( u received answer like: Hello I'm kbot num. of version )
-Change tag
