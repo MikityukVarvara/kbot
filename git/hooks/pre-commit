@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Path to the gitleaks utility
+GITLEAKS_PATH="/usr/local/bin/gitleaks"
+GITLEAKS_COMMAND="/usr/local/bin/gitleaks detect --source . "
+
+# Checking for the presence of gitleaks
+if ! command -v "$GITLEAKS_PATH" &> /dev/null; then
+    echo "Installing gitleaks..."
+
+    # Checking the operating system
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        # Installing gitleaks on Linux
+        curl -sSfL https://github.com/zricethezav/gitleaks/releases/download/v8.18.2/gitleaks_8.18.2_linux_x64.tar.gz | tar xvz -C /tmp/
+        mv /tmp/gitleaks "$GITLEAKS_PATH"
+        chmod +x "$GITLEAKS_PATH"
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        # Installing gitleaks on macOS
+        curl -sSfL https://raw.githubusercontent.com/zricethezav/gitleaks/master/scripts/install.sh | bash
+    else
+        echo "Operating system is not supported."
+        exit 1
+    fi
+
+    # Checking the success of the installation
+    if ! command -v "$GITLEAKS_PATH" &> /dev/null; then
+        echo "Error: gitleaks utility is not installed."
+        exit 1
+    fi
+fi
+
+# Running gitleaks to check for secrets
+#echo $GITLEAKS_COMMAND
+$GITLEAKS_COMMAND
+
+# Getting the exit code of gitleaks
+EXIT_CODE=$?
+
+# If secrets are found, output an error message and exit with an error code
+if [ $EXIT_CODE -ne 0 ]; then
+	echo $$EXIT_CODE
+    echo "Error: Secrets found in the code. Please review your changes before committing."
+    exit $EXIT_CODE
+fi
+
+# Setting the enable option for the pre-commit hook using git config
+git config --bool hooks.enable true
+
+# If the check is successful, output a success message and exit with a success code
+echo "Check for secrets completed successfully. Commit allowed."
+exit 0
