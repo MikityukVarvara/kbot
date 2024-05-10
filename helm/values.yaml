@@ -6,7 +6,7 @@ replicaCount: 2
 image:
   registry: "ghcr.io"
   repository: mikityuk
-  tag: "v1.0.5-ca0816a"
+  tag: "v1.0.5-31ce38d"
   os: linux
   arch: amd64
 secret:
